@@ -9,12 +9,13 @@ env:
 
 jobs:
   test:
-    env:
-      MONGODB_CLUSTER_ADDRESS: mycluster.bbihz7c.mongodb.net
-      MONGODB_USERNAME: lironhazan
-      MONGODB_PASSWORD: Or9rtYbkOcQS2gb1
-      PORT: 8080
     environment: testing
+    env:
+      MONGODB_CLUSTER_ADDRESS: ${{ secrets.MONGODB_CLUSTER_ADDRESS}}
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME}}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD}}
+      PORT: 8080
+    
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -38,6 +39,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |        
-          echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+        run: |      
           echo "MONGODB_DB_NAME: ${{ env.MONGODB_DB_NAME }}"
